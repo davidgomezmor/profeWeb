@@ -24,7 +24,7 @@ export function Home() {
                     <Link to="/Login">go to Login</Link>
                 </div>
                 <div>
-                    <Link to="/SignUp">go to SignUp</Link>
+                    <Link to="/Register">go to SignUp</Link>
                 </div>
 
             </div>
