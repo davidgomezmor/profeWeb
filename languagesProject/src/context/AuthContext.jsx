@@ -76,7 +76,7 @@ export const AuthProvider = ({ children }) => {
   const logOut = async () => {
     try {
       await signOut(auth);
-      /*  navigate('/Welcome'); // Quan tanquis sessió ves a Welcome */
+      navigate('/Home'); // Quan tanquis sessió ves a Welcome */
       return true;
     } catch (error) {
       return false;

@@ -1,52 +1,70 @@
-import { Link } from "react-router-dom"
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 export const Login = () => {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
-    const [isLogged, setIsLogged] = useState(false)
+  const navigate = useNavigate();
+  const { login, email, setEmail, password, setPassword, error, setError } =
+    useContext(AuthContext);
 
-    function handleEmail(event) {
-        setEmail(event.target.value);
+  // AUTENTIFICACIÓ / ERROR AL LOGIN
+  const onLogin = async (e) => {
+    e.preventDefault();
+    await login(email, password);
+    if (error) {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      alert("Invalid email or password");
     }
+    console.log(error);
+    
+    setEmail("");
+    setPassword("");
 
-    function handlePassword(event) {
-        setPassword(event.target.value);
-    }
-
-    function handleLogin() {
-        const user = users.find((usuari) =>
-            usuari.email === email && usuari.password === password);
-        if (user) {
-            setMessage(`Welcome ${email}! You are logged.`);
-            setPassword(``)
-            setEmail(``)
-            setIsLogged(true)
-        } else {
-            setMessage("Invalid username or password");
-            setIsLogged(false)
-        }
-    }
-    const users = JSON.parse(localStorage.getItem("users")) || [];
-
-    return (
-        <div>
+    navigate("/User");
+  };
+  return (
+    <>
+      <div className="loginWindow">
+        <h1>¡HOLA!</h1>
+   
+        <form>
+          <div>
+            <input
+            className="input input-bordered input-primary w-full max-w-xs"
+              type="email"
+              placeholder="Introduce tu email"
+              autoComplete="on"
+              required
+              onChange={(e) => setEmail(e.target.value)}
+            />
+            <input
+            className="input input-bordered input-primary w-full max-w-xs"
+              type="password"
+              placeholder="Contraseña"
+              minLength="6"
+              required
+              autoComplete="off"
+              onChange={(e) => setPassword(e.target.value)}
+            />
             <div>
-                Enter your email:
-                <input type="email" value={email} onChange={handleEmail} />
+              <Link className="forgotPass" type="link" to="/ForgotPassword">
+                {" "}
+                ¿Has olvidado tu contraseña?{" "}
+              </Link>
             </div>
-            <div>
-                Enter your Password:
-                <input type="password" value={password} onChange={handlePassword} />
-            </div>
-            <button onClick={handleLogin} type="button"><b>LOGIN</b></button>
-            {isLogged &&
-                
-                <button><b><Link to="/User">User</Link></b></button>}
-            <div>
-                {message}
-            </div>
-        </div>
-    )
-}
+          </div>
+          <button className="login" type="submit" onClick={onLogin}>
+            INICIA SESIÓN
+          </button>
+          <div>
+            <Link className="subtextLogin" type="link" to="/register/">
+              {" "}
+              O CREA UNA CUENTA{" "}
+            </Link>
+          </div>
+        </form>
+      </div>
+    </>
+  );
+};
