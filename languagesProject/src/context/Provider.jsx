@@ -3,7 +3,7 @@ import {createContext, useState, useContext} from 'react';
 export const AppContext = createContext();
 export const useMyContext = () => useContext(AppContext);
 
-const Provider = ({ children }) =>{
+export const Provider = ({ children }) =>{
     const [name, setName] = useContext("");
     const [surname, setSurname] = useContext("");
     const [email, setEmail] = useContext("");
@@ -16,4 +16,3 @@ const Provider = ({ children }) =>{
     );
 }
 
-export default Provider
