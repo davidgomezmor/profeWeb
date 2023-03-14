@@ -25,6 +25,9 @@ export const AuthProvider = ({ children }) => {
   const [error, setError] = useState("");
   const [message, setMessage] = useState("");
 
+
+
+
   // REGISTER
   const signup = async (email, password) => {
     try {
@@ -41,13 +44,12 @@ export const AuthProvider = ({ children }) => {
       await setDoc(doc(db, "users", user.uid), {
         email,
         firstName,
-        userTaskList: [],
-        userTracking: [],
-        userPhases: [],
+        userSchedule: [],
+        userCourse: []
         //* Aquí posar les coses que s'han de guardar a la base de dades (de cada user)
       });
       return true;
-    } catch (error) {}
+    } catch (error) { }
   };
 
   // LOGIN
@@ -117,7 +119,6 @@ export const AuthProvider = ({ children }) => {
         login,
         resetPassword,
         logOut,
- 
       }}
     >
       {children}

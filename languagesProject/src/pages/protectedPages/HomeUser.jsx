@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
-import { Calendar } from "../../components/Calendar";
+import { MyCalendar } from "../../components/Calendar";
 import { LogOut } from "../publicPages/logOut";
 
 
@@ -20,7 +20,7 @@ export const HomeUser = () => {
             <br />
             <div>
                 <h3>Choose Date and time for next class:</h3>
-                <Calendar />
+                <MyCalendar />
             </div>
             <div>
                 <LogOut />
