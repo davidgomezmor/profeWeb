@@ -33,7 +33,7 @@ export const MyCalendar = () => {
     });
   };
 
-
+//MUESTRA HORAS DISPONIBLES
   const getAvailableHours = (date) => {
     const day = date.toLocaleDateString("en-US", { weekday: "long" });
     return teacherSchedule[day] || [];
