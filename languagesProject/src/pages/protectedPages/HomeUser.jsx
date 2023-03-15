@@ -3,6 +3,7 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
 import { MyCalendar } from "../../components/Calendar";
 import { LogOut } from "../publicPages/logOut";
+import Navbar from "../../components/Navbar";
 
 
 export const HomeUser = () => {
@@ -15,6 +16,8 @@ export const HomeUser = () => {
 
 
     return (
+        <>
+        <Navbar/>
         <div>
             You are logged in
             <br />
@@ -26,6 +29,6 @@ export const HomeUser = () => {
                 <LogOut />
             </div>
         </div>
-
+</>
     )
 }

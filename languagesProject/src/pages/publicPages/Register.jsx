@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 
 
 export function Register() {
@@ -37,6 +38,7 @@ export function Register() {
   };
   return (
     <>
+    <Navbar/>
       <div className="register">
         <h2>REGISTER</h2>
         <form className="registerForm">
@@ -81,7 +83,7 @@ export function Register() {
           </button>
             <Link className="subtextLogin" to="/login/">
               {" "}
-              Sign In{" "}
+              Log In{" "}
             </Link>
           </div>
         </form>

@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Calendar } from "react-calendar";
 import "react-calendar/dist/Calendar.css";
+import Navbar from "./Navbar";
 import { teacherSchedule } from "./teacherSchedule";
 
 //HOOKS
@@ -13,7 +14,7 @@ export const MyCalendar = () => {
     setDate(date);
   };
 
-//ACTUALIZA HORA CUANDO EL USUARIO SELECCIONA UNA
+  //ACTUALIZA HORA CUANDO EL USUARIO SELECCIONA UNA
   const onHourSelect = (hour) => {
     setSelectedHours((prevSelectedHours) => {
       const selectedHoursForDate = prevSelectedHours[date.toDateString()] || [];
@@ -33,7 +34,7 @@ export const MyCalendar = () => {
     });
   };
 
-//MUESTRA HORAS DISPONIBLES
+  //MUESTRA HORAS DISPONIBLES
   const getAvailableHours = (date) => {
     const day = date.toLocaleDateString("en-US", { weekday: "long" });
     return teacherSchedule[day] || [];
@@ -59,27 +60,29 @@ export const MyCalendar = () => {
   };
 
   return (
-    <div>
-      <Calendar minDate={new Date()} onChange={onChangeDate} value={date} />
+    <>
       <div>
-        <ul>
-          {getAvailableHours(date).map((hour) => (
-            <li key={hour}>
-              <button disabled={selectedHours[date.toDateString()]?.includes(hour)} onClick={() => onHourSelect(hour)}>
-                {hour}
-              </button>
-            </li>
-          ))}
-        </ul>
+        <Calendar minDate={new Date()} onChange={onChangeDate} value={date} />
+        <div>
+          <ul>
+            {getAvailableHours(date).map((hour) => (
+              <li key={hour}>
+                <button disabled={selectedHours[date.toDateString()]?.includes(hour)} onClick={() => onHourSelect(hour)}>
+                  {hour}
+                </button>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <h2>Selected hours:</h2>
+          <ul>
+            {formatSelectedHours(selectedHours).map((formattedHour) => (
+              <li key={formattedHour}>{formattedHour}</li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <div>
-        <h2>Selected hours:</h2>
-        <ul>
-          {formatSelectedHours(selectedHours).map((formattedHour) => (
-            <li key={formattedHour}>{formattedHour}</li>
-          ))}
-        </ul>
-      </div>
-    </div>
+    </>
   );
 };

@@ -1,6 +1,7 @@
-import React, { useContext} from "react";
+import React, { useContext } from "react";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import Navbar from "../../components/Navbar";
 import { AuthContext } from "../../context/AuthContext";
 
 
@@ -25,6 +26,7 @@ export const ForgotPassword = () => {
   };
   return (
     <>
+      <Navbar />
       <div>
         <h3>REESTABLECER CONTRASEÑA</h3>
         <div>
@@ -35,12 +37,6 @@ export const ForgotPassword = () => {
               <div role="alert">
                 <div>
                   {error}
-
-                  <div>
-                    <button type="button">
-                      <span>Cerrar</span>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -52,12 +48,6 @@ export const ForgotPassword = () => {
               <div role="alert">
                 <div>
                   {message}
-
-                  <div>
-                    <button type="button">
-                      <span>Cerrar</span>
-                    </button>
-                  </div>
                 </div>
               </div>
             </div>
@@ -76,9 +66,7 @@ export const ForgotPassword = () => {
                 ref={emailRef}
                 required
               />
-
             </label>
-
             <button className="btn btn-primary rounded-full mt-3">
               <span>ENVIAR EMAIL</span>
             </button>
